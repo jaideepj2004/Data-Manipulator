@@ -1,7 +1,5 @@
 # DataOpsWeb
 
-# DataOpsWeb
-
 DataOpsWeb is a user-friendly web platform for performing data operations and preprocessing tasks without coding.
 
 ## Features
@@ -14,6 +12,22 @@ DataOpsWeb is a user-friendly web platform for performing data operations and pr
 - **Plot Graphs**: Visualize your data with various plots.
 - **Navigation**: Easily navigate between sections.
 
+## File Structure
+
+DataOpsWeb/
+│
+├── app.py                   # Main Flask application file
+├── new_app.py               # Blueprint for additional functionalities
+│
+├── static/                  # Static files (CSS, JavaScript)
+│   ├── css/
+│   └── js/
+│
+└── templates/               # HTML templates
+    ├── index.html           # Main template for data operations
+    └── new_app.html         # Template for additional functionalities
+
+    
 ## How to Use
 
 ### Prerequisites
@@ -50,4 +64,5 @@ You can install them using the following command:
 ## Contributing
 
 Contributions are welcome! Feel free to suggest features, improvements, or bug fixes by opening an issue or pull request.
+
 
