@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Operations</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #111;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+        .btn-block {
+            border-radius: 25px;
+            font-size: 16px;
+            padding: 10px;
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-lg">
+            <div class="card-header text-center bg-primary text-white">
+                <h1>Data Operations</h1>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('upload_csv') }}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="file">Upload CSV File:</label>
+                        <input type="file" name="file" id="file" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                </form>
+                {% if columns %}
+                <form action="{{ url_for('perform_operation_route') }}" method="post" class="mt-4">
+                    <input type="hidden" name="file" value="{{ file }}">
+                    <div class="form-group">
+                        <label for="operation">Choose Operation:</label>
+                        <select name="operation" id="operation" class="form-control" required>
+                            <option value="mean">Mean</option>
+                            <option value="median">Median</option>
+                            <option value="mode">Mode</option>
+                            <option value="null_values">Null Values</option>
+                            <option value="total_null_values">Total Null Values</option>
+                            <option value="shape">Shape</option>
+                            <option value="description">Description</option>
+                            <option value="info">Info</option>
+                            <option value="head">Head</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="column">Choose Column (optional):</label>
+                        <select name="column" id="column" class="form-control">
+                            <option value="" selected>None</option>
+                            {% for column in columns %}
+                            <option value="{{ column }}">{{ column }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Apply Operation</button>
+                </form>
+                {% if result %}
+                <div class="mt-4">
+                    <h2 class="text-center">Result</h2>
+                    <div class="table-responsive">
+                        {{ result|safe }}
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                <form action="{{ url_for('navigate') }}" method="get" class="mt-3">
+                    <button type="submit" class="btn btn-secondary btn-block">Go to Data Encoding</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
