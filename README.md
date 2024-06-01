@@ -16,16 +16,17 @@ DataOpsWeb is a user-friendly web platform for performing data operations and pr
 
 DataOpsWeb/
 │
-├── app.py                   # Main Flask application file
-├── new_app.py               # Blueprint for additional functionalities
+├── app.py # Main Flask application file
+├── new_app.py # Blueprint for additional functionalities
+├── requirements.txt # List of Python dependencies
 │
-├── static/                  # Static files (CSS, JavaScript)
-│   ├── css/
-│   └── js/
+├── static/ # Static files (CSS, JavaScript)
+│ ├── css/
+│ └── js/
 │
-└── templates/               # HTML templates
-    ├── index.html           # Main template for data operations
-    └── new_app.html         # Template for additional functionalities
+└── templates/ # HTML templates
+├── index.html # Main template for data operations
+└── new_app.html # Template for additional functionalities
 
     
 ## How to Use
